@@ -95,7 +95,7 @@
                                     android:layout_marginEnd="4dp"
                                     android:layout_marginBottom="4dp"
                                     android:fontFamily="@font/roboto_reg"
-                                    android:text="Faculties"
+                                    android:text="Faculty"
                                     android:textColor="@color/white" />
 
                             </RelativeLayout>

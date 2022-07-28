@@ -27,6 +27,28 @@
             android:textColor="@color/white" />
 
         <TextView
+            android:id="@+id/BlockNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/roomNumber"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="10dp"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/FloorNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/BlockNumber"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="10dp"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white" />
+
+        <TextView
             android:id="@+id/roomType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

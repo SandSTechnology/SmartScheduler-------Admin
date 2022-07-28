@@ -93,9 +93,17 @@ public class ViewAllRoomsFragment extends Fragment {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         String ID;
                         String ROOM= "";
+                        String BLOCK_NUM= "";
+                        String FLOOR_NUM= "";
                         String ROOM_TYPE= "";
 
                         ID = dataSnapshot.getKey();
+
+                        if (dataSnapshot.hasChild("BLOCK_NUM"))
+                            BLOCK_NUM = Objects.requireNonNull(dataSnapshot.child("BLOCK_NUM").getValue()).toString();
+
+                        if (dataSnapshot.hasChild("FLOOR_NUM"))
+                            FLOOR_NUM = Objects.requireNonNull(dataSnapshot.child("FLOOR_NUM").getValue()).toString();
 
                         if (dataSnapshot.hasChild("NUMBER"))
                             ROOM = Objects.requireNonNull(dataSnapshot.child("NUMBER").getValue()).toString();
@@ -103,7 +111,7 @@ public class ViewAllRoomsFragment extends Fragment {
                         if (dataSnapshot.hasChild("ROOM_TYPE"))
                             ROOM_TYPE = Objects.requireNonNull(dataSnapshot.child("ROOM_TYPE").getValue()).toString();
 
-                        list.add(new RoomsModel(ID,ROOM,ROOM_TYPE));
+                        list.add(new RoomsModel(ID,ROOM,ROOM_TYPE,BLOCK_NUM,FLOOR_NUM));
                     }
                     if (list.isEmpty()) {
                         if (loadingBar.getVisibility() == View.VISIBLE)

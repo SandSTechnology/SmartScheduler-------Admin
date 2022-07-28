@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Clients_Projects/Latest TimeSchedule/SmartScheduler-Admin/app/src/main/res/drawable/half_blue_roundshape.xml" value="0.1105" />
         <entry key="..\:/Clients_Projects/Latest TimeSchedule/SmartScheduler-Admin/app/src/main/res/layout/activity_add_new_faculty.xml" value="0.209375" />
         <entry key="..\:/Clients_Projects/Latest TimeSchedule/SmartScheduler-Admin/app/src/main/res/layout/activity_courses.xml" value="0.209375" />
         <entry key="..\:/Clients_Projects/Latest TimeSchedule/SmartScheduler-Admin/app/src/main/res/layout/activity_login.xml" value="0.1537037037037037" />
         <entry key="..\:/Clients_Projects/Latest TimeSchedule/SmartScheduler-Admin/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Clients_Projects/Latest TimeSchedule/SmartScheduler-Admin/app/src/main/res/layout/activity_schedules.xml" value="0.209375" />
+        <entry key="..\:/Clients_Projects/Latest TimeSchedule/SmartScheduler-Admin/app/src/main/res/layout/activity_splash.xml" value="0.209375" />
         <entry key="..\:/Clients_Projects/Latest TimeSchedule/SmartScheduler-Admin/app/src/main/res/layout/activity_view_all_faculities.xml" value="0.209375" />
         <entry key="..\:/Clients_Projects/Latest TimeSchedule/SmartScheduler-Admin/app/src/main/res/layout/activity_view_editable_course.xml" value="0.209375" />
         <entry key="..\:/Clients_Projects/Latest TimeSchedule/SmartScheduler-Admin/app/src/main/res/layout/activity_view_editable_department.xml" value="0.209375" />

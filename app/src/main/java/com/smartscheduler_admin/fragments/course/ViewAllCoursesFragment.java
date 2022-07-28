@@ -3,6 +3,7 @@ package com.smartscheduler_admin.fragments.course;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +28,7 @@ import com.smartscheduler_admin.model.FacultyModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Objects;
 
 public class ViewAllCoursesFragment extends Fragment {
@@ -38,6 +40,7 @@ public class ViewAllCoursesFragment extends Fragment {
     ProgressBar loadingBar;
     FirebaseUser firebaseUser;
     ValueEventListener allValueListener=null;
+    SearchView searchView;
 
     public ViewAllCoursesFragment() {
         // Required empty public constructor
@@ -66,7 +69,84 @@ public class ViewAllCoursesFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
+        searchView = view.findViewById(R.id.SearchView);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.trim().length() > 0)
+                {
+                    getFilteredData(newText);
+                }
+                else
+                {
+                    getData();
+                }
+                return false;
+            }
+        });
+
         return view;
+    }
+
+    private void getFilteredData(String query) {
+        loadingBar.setVisibility(View.VISIBLE);
+        myRef.child("Courses").addListenerForSingleValueEvent(allValueListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+                if (snapshot.exists()) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        String ID= "";
+                        String COURSE_NAME= "";
+                        String CREDIT_HOUR= "";
+                        String DEPARTMENT= "";
+                        String SEMESTER= "";
+
+                        ID = dataSnapshot.getKey();
+
+                        if (dataSnapshot.hasChild("COURSE_NAME"))
+                            COURSE_NAME = Objects.requireNonNull(dataSnapshot.child("COURSE_NAME").getValue()).toString();
+                        if (dataSnapshot.hasChild("CREDIT_HOUR"))
+                            CREDIT_HOUR = Objects.requireNonNull(dataSnapshot.child("CREDIT_HOUR").getValue()).toString();
+                        if (dataSnapshot.hasChild("DEPARTMENT"))
+                            DEPARTMENT = Objects.requireNonNull(dataSnapshot.child("DEPARTMENT").getValue()).toString();
+                        if (dataSnapshot.hasChild("SEMESTER"))
+                            SEMESTER = Objects.requireNonNull(dataSnapshot.child("SEMESTER").getValue()).toString();
+
+                        if (Objects.requireNonNull(COURSE_NAME.toLowerCase(Locale.ROOT)).contains(query.toLowerCase(Locale.ROOT)))
+                        {
+                            list.add(new CourseModel(ID,COURSE_NAME,CREDIT_HOUR,DEPARTMENT,SEMESTER));
+                        }
+                    }
+                    if (list.isEmpty()) {
+                        if (loadingBar.getVisibility() == View.VISIBLE)
+                            loadingBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.GONE);
+                        NoRecordFoundView.setVisibility(View.VISIBLE);
+                    } else {
+                        Collections.reverse(list);
+                        loadingBar.setVisibility(View.GONE);
+                        recyclerView.setAdapter(adapter);
+                        NoRecordFoundView.setVisibility(View.GONE);
+                    }
+                } else {
+                    loadingBar.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.GONE);
+                    NoRecordFoundView.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                loadingBar.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
@@ -85,7 +165,7 @@ public class ViewAllCoursesFragment extends Fragment {
 
     private void getData() {
         loadingBar.setVisibility(View.VISIBLE);
-        myRef.child("Courses").addValueEventListener(allValueListener = new ValueEventListener() {
+        myRef.child("Courses").addListenerForSingleValueEvent(allValueListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();

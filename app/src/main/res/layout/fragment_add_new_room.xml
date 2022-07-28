@@ -34,6 +34,64 @@
 
             <!-- INPUT -->
             <EditText
+                android:id="@+id/blockNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:background="@android:color/transparent"
+                android:digits="0123456789"
+                android:hint="Enter Block number"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingStart="17dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="15dp"
+                android:textColor="@android:color/black"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="52dp"
+            android:layout_marginTop="12.7dp"
+            android:layout_marginRight="52dp"
+            android:background="@drawable/blue_border_rounded_corner">
+
+            <!-- INPUT -->
+            <EditText
+                android:id="@+id/floorNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:background="@android:color/transparent"
+                android:digits="0123456789"
+                android:hint="Enter Floor number"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingStart="17dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="15dp"
+                android:textColor="@android:color/black"
+                android:textCursorDrawable="@drawable/cursor_color"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="52dp"
+            android:layout_marginTop="12.7dp"
+            android:layout_marginRight="52dp"
+            android:background="@drawable/blue_border_rounded_corner">
+
+            <!-- INPUT -->
+            <EditText
                 android:id="@+id/roomNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

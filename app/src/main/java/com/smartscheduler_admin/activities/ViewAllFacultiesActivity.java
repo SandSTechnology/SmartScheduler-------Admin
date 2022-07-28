@@ -52,7 +52,7 @@ public class ViewAllFacultiesActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
-            actionBar.setTitle("Faculties");
+            actionBar.setTitle("Faculty");
         }
 
         NoRecordFoundView = findViewById(R.id.noRcdFnd);

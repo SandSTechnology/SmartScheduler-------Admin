@@ -20,7 +20,7 @@ import com.smartscheduler_admin.model.RoomsModel;
 import java.util.Objects;
 
 public class ViewEditableRoomActivity extends AppCompatActivity {
-    private EditText room_number, room_type;
+    private EditText blockNumber,floorNumber,room_number, room_type;
     DatabaseReference myRef;
     FirebaseAuth mAuth;
     String ID;
@@ -30,6 +30,8 @@ public class ViewEditableRoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_editable_room);
 
+        blockNumber = findViewById(R.id.blockNumber);
+        floorNumber = findViewById(R.id.floorNumber);
         room_number = findViewById(R.id.roomNumber);
         room_type = findViewById(R.id.roomType);
 
@@ -40,9 +42,15 @@ public class ViewEditableRoomActivity extends AppCompatActivity {
 
         String RoomNumber = "";
         String RoomType = "";
+        String BlockNumber = "";
+        String FloorNumber = "";
 
         if (model.getID() != null && !model.getID().equals(""))
             ID = model.getID();
+        if (model.getBLOCK_NUM() != null && !model.getBLOCK_NUM().equals(""))
+            BlockNumber = model.getBLOCK_NUM();
+        if (model.getFLOOR_NUM() != null && !model.getFLOOR_NUM().equals(""))
+            FloorNumber = model.getFLOOR_NUM();
         if (model.getROOM() != null && !model.getROOM().equals(""))
             RoomNumber = model.getROOM();
         if (model.getROOM_TYPE() != null && !model.getROOM_TYPE().equals(""))
@@ -50,13 +58,25 @@ public class ViewEditableRoomActivity extends AppCompatActivity {
 
         room_number.setText(RoomNumber);
         room_type.setText(RoomType);
+        blockNumber.setText(BlockNumber);
+        floorNumber.setText(FloorNumber);
 
         myRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
 
         updateData.setOnClickListener(v -> {
             String name = room_number.getText().toString().trim();
+            String block = blockNumber.getText().toString().trim();
+            String floor = floorNumber.getText().toString().trim();
 
+            if (block.equalsIgnoreCase("")) {
+                Toast.makeText(this, "Add Block Number", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (floor.equalsIgnoreCase("")) {
+                Toast.makeText(this, "Add Floor Number", Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (name.equalsIgnoreCase("")) {
                 Toast.makeText(this, "Add Room Number", Toast.LENGTH_SHORT).show();
                 return;
@@ -107,6 +127,9 @@ public class ViewEditableRoomActivity extends AppCompatActivity {
 
         newRef.child("ID").setValue(ID);
         newRef.child("NUMBER").setValue(room_number.getText().toString());
+        newRef.child("BLOCK_NUM").setValue(blockNumber.getText().toString());
+        newRef.child("FLOOR_NUM").setValue(floorNumber.getText().toString());
+
         if (!room_type.getText().toString().equals("")) {
             newRef.child("ROOM_TYPE").setValue(room_type.getText().toString());
         }

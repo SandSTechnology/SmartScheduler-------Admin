@@ -21,7 +21,7 @@ import com.smartscheduler_admin.R;
 import java.util.Objects;
 
 public class AddNewRoomFragment extends Fragment {
-    private EditText room_number, room_type;
+    private EditText blockNumber,floorNumber,room_number, room_type;
     DatabaseReference myRef;
     FirebaseAuth mAuth;
     int count = 0;
@@ -38,8 +38,11 @@ public class AddNewRoomFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_add_new_room, container, false);
 
+        blockNumber = view.findViewById(R.id.blockNumber);
+        floorNumber = view.findViewById(R.id.floorNumber);
         room_number = view.findViewById(R.id.roomNumber);
         room_type = view.findViewById(R.id.roomType);
+
         CardView submitData = view.findViewById(R.id.submitCard);
 
         myRef = FirebaseDatabase.getInstance().getReference();
@@ -47,20 +50,30 @@ public class AddNewRoomFragment extends Fragment {
 
         submitData.setOnClickListener(v -> {
             String name = room_number.getText().toString().trim();
+            String block = blockNumber.getText().toString().trim();
+            String floor = floorNumber.getText().toString().trim();
 
+            if (block.equalsIgnoreCase("")) {
+                Toast.makeText(getContext(), "Add Block Number", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (floor.equalsIgnoreCase("")) {
+                Toast.makeText(getContext(), "Add Floor Number", Toast.LENGTH_SHORT).show();
+                return;
+            }
             if (name.equalsIgnoreCase("")) {
                 Toast.makeText(getContext(), "Add Room Number", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            CanAddThisRoom(name);
+            CanAddThisRoom(name,block,floor);
         });
 
         getScheduleNumber();
         return view;
     }
 
-    private void CanAddThisRoom(String room_number) {
+    private void CanAddThisRoom(String room_number,String block_num,String floor_num) {
         DatabaseReference newRef = myRef.getRef();
         newRef.child("Rooms").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -95,6 +108,9 @@ public class AddNewRoomFragment extends Fragment {
 
         newRef.child("ID").setValue(count);
         newRef.child("NUMBER").setValue(room_number.getText().toString());
+        newRef.child("BLOCK_NUM").setValue(blockNumber.getText().toString());
+        newRef.child("FLOOR_NUM").setValue(floorNumber.getText().toString());
+
         if (!room_type.getText().toString().equals(""))
         {
             newRef.child("ROOM_TYPE").setValue(room_type.getText().toString());
