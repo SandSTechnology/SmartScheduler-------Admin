@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "398927261621",
+    "firebase_url": "https://smartscheduler-admin-default-rtdb.firebaseio.com",
+    "project_id": "smartscheduler-admin",
+    "storage_bucket": "smartscheduler-admin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398927261621:android:db3e8b6a7d631cbc55b3fc",
+        "android_client_info": {
+          "package_name": "com.smartscheduler_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398927261621-8i11g1ggsmhp1hjbqa53e6i2ak55dkp9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcpq9Jj8WbbCGVK3v9rX8r5qY3jbehwQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398927261621-8i11g1ggsmhp1hjbqa53e6i2ak55dkp9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Admin-SmartScheduler</string>
+    <string name="image">image</string>
+    <string name="channel_id">notificationchannel</string>
+</resources>

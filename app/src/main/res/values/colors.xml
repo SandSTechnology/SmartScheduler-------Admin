@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_color">#059ebd</color>
+    <color name="primary_color_dark">#016A80</color>
+
+    <color name="semiTransparentWhite">#00FFFFFF</color>
+    <color name="blue_dark">#0B53BD</color>
+    <color name="gray_btn_bg_color">#D0D0D0</color>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="df_transparent_black_background">#80000000</color>
+    <color name="whiteCardColor">#fff</color>
+    <color name="whiteTextColor">#fff</color>
+    <color name="blackTextColor">#000</color>
+
+    <color name="headings">#3797CF</color>
+
+    <color name="color_image_pdf">#5AC5CA</color>
+    <color name="color_text_pdf">#F27D59</color>
+    <color name="color_qr_pdf">#A58FFD</color>
+    <color name="color_excel_pdf">#6298EC</color>
+    <color name="color_5">#DC4B59</color>
+    <color name="color_6">#86BF42</color>
+    <color name="color_green_pdf">#94B371</color>
+
+    <color name="color_5_tint">#D6192C</color>
+    <color name="color_6_tint">#548A13</color>
+    <color name="color_image_pdf_tint">#17AAB1</color>
+    <color name="color_qr_pdf_tint">#6B59B6</color>
+    <color name="color_green_pdf_tint">#6A8E43</color>
+    <color name="color_excel_pdf_tint">#446EAF</color>
+</resources>
