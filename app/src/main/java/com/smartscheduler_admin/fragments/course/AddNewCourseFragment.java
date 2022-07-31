@@ -36,11 +36,15 @@ public class AddNewCourseFragment extends Fragment {
     Spinner CreditHoursSpinner;
     private Spinner SemesterSpinner;
     private Spinner DepartmentSpinner;
+    private Spinner FacultySpinner;
     private ArrayAdapter<String> adapterSemester;
     private ArrayAdapter<String> adapterDepartment;
+    private ArrayAdapter<String> adapterFaculty;
 
     ArrayList<String> SemesterList = new ArrayList<>();
     ArrayList<String> DepartmentList = new ArrayList<>();
+    ArrayList<String> FacultyIDList = new ArrayList<>();
+    ArrayList<String> FacultyNameList = new ArrayList<>();
 
     public AddNewCourseFragment() {
         // Required empty public constructor
@@ -56,8 +60,10 @@ public class AddNewCourseFragment extends Fragment {
         course_name = view.findViewById(R.id.CourseName);
 
         CardView submitData = view.findViewById(R.id.submitCard);
+
         SemesterSpinner = view.findViewById(R.id.allSemesterSpinner);
         DepartmentSpinner = view.findViewById(R.id.allDepartmentSpinner);
+        FacultySpinner = view.findViewById(R.id.allFacultySpinner);
 
         myRef = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
@@ -87,7 +93,31 @@ public class AddNewCourseFragment extends Fragment {
         adapterDepartment.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         DepartmentSpinner.setAdapter(adapterDepartment);
 
-        myRef.child("Departments").addValueEventListener(new ValueEventListener() {
+        //Department Adapter
+        adapterFaculty = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, FacultyNameList);
+        adapterFaculty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        FacultySpinner.setAdapter(adapterFaculty);
+
+        myRef.child("Faculty").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+                    FacultyIDList.add(areaSnapshot.getKey());
+                    String FacultyName = "";
+                    if (areaSnapshot.child("NAME").exists())
+                        FacultyName = areaSnapshot.child("NAME").getValue(String.class);
+                    FacultyNameList.add(FacultyName);
+                }
+                FacultySpinner.setAdapter(adapterFaculty);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        myRef.child("Departments").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
@@ -198,6 +228,8 @@ public class AddNewCourseFragment extends Fragment {
         newRef.child("CREDIT_HOUR").setValue(CreditHoursSpinner.getSelectedItem().toString());
         newRef.child("DEPARTMENT").setValue(DepartmentSpinner.getSelectedItem().toString());
         newRef.child("SEMESTER").setValue(SemesterSpinner.getSelectedItem().toString());
+        newRef.child("FACULTY_NAME").setValue(FacultySpinner.getSelectedItem().toString());
+        newRef.child("FACULTY_ID").setValue(FacultyIDList.get(FacultySpinner.getSelectedItemPosition() - 1 ));
 
         Toast.makeText(getContext(), "Course Added", Toast.LENGTH_SHORT).show();
 

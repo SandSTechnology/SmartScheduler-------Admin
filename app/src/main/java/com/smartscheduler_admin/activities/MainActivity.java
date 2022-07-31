@@ -3,9 +3,13 @@ package com.smartscheduler_admin.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
@@ -17,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.smartscheduler_admin.R;
+import com.smartscheduler_admin.algorithm.GenerateTimeTable;
 import com.smartscheduler_admin.model.SendNotificationScheduleModel;
 import com.smartscheduler_admin.services.ApiServices;
 import com.smartscheduler_admin.services.ClientApi;
@@ -45,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     private Handler mHandler;
     private final ArrayList<String> StudentIDs = new ArrayList<>();
     private final ArrayList<String> StudentDeviceTokens = new ArrayList<>();
+    GenerateTimeTable generateTimeTable = new GenerateTimeTable(this);
+    ImageView imageView;
 
     Runnable mStatusChecker = new Runnable() {
         @Override
@@ -83,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        imageView = findViewById(R.id.headerImg);
+        imageView.setOnClickListener(view -> generateTimeTable.LetsGenerateTimetable());
+
         CardView facultiesCard = findViewById(R.id.facultiesCard);
         CardView coursesCard = findViewById(R.id.coursesCard);
         //CardView programsCard = findViewById(R.id.programsCard);
@@ -119,6 +129,9 @@ public class MainActivity extends AppCompatActivity {
         logoutCard.setOnClickListener(v -> Logout());
 
         getAllSchedule();
+
+
+        //generateTimeTable.LetsGenerateTimetable();
     }
 
     @Override

@@ -107,6 +107,8 @@ public class ViewAllCoursesFragment extends Fragment {
                         String CREDIT_HOUR= "";
                         String DEPARTMENT= "";
                         String SEMESTER= "";
+                        String FACULTY_NAME = "";
+                        String FACULTY_ID = "";
 
                         ID = dataSnapshot.getKey();
 
@@ -118,10 +120,13 @@ public class ViewAllCoursesFragment extends Fragment {
                             DEPARTMENT = Objects.requireNonNull(dataSnapshot.child("DEPARTMENT").getValue()).toString();
                         if (dataSnapshot.hasChild("SEMESTER"))
                             SEMESTER = Objects.requireNonNull(dataSnapshot.child("SEMESTER").getValue()).toString();
-
+                        if (dataSnapshot.child("FACULTY_NAME").exists())
+                            FACULTY_NAME = dataSnapshot.child("FACULTY_NAME").getValue(String.class);
+                        if (dataSnapshot.child("FACULTY_ID").exists())
+                            FACULTY_ID = dataSnapshot.child("FACULTY_ID").getValue(String.class);
                         if (Objects.requireNonNull(COURSE_NAME.toLowerCase(Locale.ROOT)).contains(query.toLowerCase(Locale.ROOT)))
                         {
-                            list.add(new CourseModel(ID,COURSE_NAME,CREDIT_HOUR,DEPARTMENT,SEMESTER));
+                            list.add(new CourseModel(ID,COURSE_NAME,CREDIT_HOUR,DEPARTMENT,SEMESTER,FACULTY_ID,FACULTY_NAME));
                         }
                     }
                     if (list.isEmpty()) {
@@ -176,6 +181,8 @@ public class ViewAllCoursesFragment extends Fragment {
                         String CREDIT_HOUR= "";
                         String DEPARTMENT= "";
                         String SEMESTER= "";
+                        String FACULTY_NAME = "";
+                        String FACULTY_ID = "";
 
                         ID = dataSnapshot.getKey();
 
@@ -187,8 +194,12 @@ public class ViewAllCoursesFragment extends Fragment {
                             DEPARTMENT = Objects.requireNonNull(dataSnapshot.child("DEPARTMENT").getValue()).toString();
                         if (dataSnapshot.hasChild("SEMESTER"))
                             SEMESTER = Objects.requireNonNull(dataSnapshot.child("SEMESTER").getValue()).toString();
+                        if (dataSnapshot.child("FACULTY_NAME").exists())
+                            FACULTY_NAME = dataSnapshot.child("FACULTY_NAME").getValue(String.class);
+                        if (dataSnapshot.child("FACULTY_ID").exists())
+                            FACULTY_ID = dataSnapshot.child("FACULTY_ID").getValue(String.class);
 
-                        list.add(new CourseModel(ID,COURSE_NAME,CREDIT_HOUR,DEPARTMENT,SEMESTER));
+                        list.add(new CourseModel(ID,COURSE_NAME,CREDIT_HOUR,DEPARTMENT,SEMESTER,FACULTY_ID,FACULTY_NAME));
 
                     }
                     if (list.isEmpty()) {
