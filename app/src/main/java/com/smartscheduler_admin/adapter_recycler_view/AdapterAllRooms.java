@@ -46,13 +46,13 @@ public class AdapterAllRooms extends RecyclerView.Adapter<AdapterAllRooms.MyHold
             holder.room.setText("" .concat("Room No: " + model.getROOM()));
 
         if (model.getROOM_TYPE()!=null && !model.getROOM_TYPE().equals(""))
-            holder.roomType.setText(model.getROOM_TYPE());
+            holder.roomType.setText("Room type : " + model.getROOM_TYPE());
 
         if (model.getBLOCK_NUM()!=null && !model.getBLOCK_NUM().equals(""))
-            holder.BlockNum.setText(model.getBLOCK_NUM());
+            holder.BlockNum.setText("Block Num : " +model.getBLOCK_NUM());
 
         if (model.getFLOOR_NUM()!=null && !model.getFLOOR_NUM().equals(""))
-            holder.FloorNum.setText(model.getFLOOR_NUM());
+            holder.FloorNum.setText("Floor Num : " +model.getFLOOR_NUM());
 
         holder.view.setOnClickListener(v -> {
             context.startActivity(new Intent(context, ViewEditableRoomActivity.class).putExtra("room",model));
