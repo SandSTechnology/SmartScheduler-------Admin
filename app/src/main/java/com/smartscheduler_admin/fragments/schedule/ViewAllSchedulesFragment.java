@@ -99,6 +99,8 @@ public class ViewAllSchedulesFragment extends Fragment {
                         String SEMESTER= "";
                         String CREDIT_HOUR= "";
                         String DEPARTMENT = "";
+                        String BLOCK_NUM= "";
+                        String FLOOR_NUM = "";
 
                         ID = dataSnapshot.getKey();
                         if (dataSnapshot.hasChild("DAY"))
@@ -117,9 +119,13 @@ public class ViewAllSchedulesFragment extends Fragment {
                             CREDIT_HOUR = dataSnapshot.child("CREDIT_HOUR").getValue().toString();
                         if (dataSnapshot.hasChild("DEPARTMENT"))
                             DEPARTMENT = dataSnapshot.child("DEPARTMENT").getValue().toString();
+                        if (dataSnapshot.hasChild("BLOCK_NUM"))
+                            BLOCK_NUM = dataSnapshot.child("BLOCK_NUM").getValue().toString();
+                        if (dataSnapshot.hasChild("FLOOR_NUM"))
+                            FLOOR_NUM = dataSnapshot.child("FLOOR_NUM").getValue().toString();
 
                         list.add(new ScheduleModel(ID,DAY,TIMESLOT,COURSE,FACULTY,ROOM,SEMESTER,
-                                CREDIT_HOUR,DEPARTMENT));
+                                CREDIT_HOUR,DEPARTMENT,BLOCK_NUM,FLOOR_NUM));
 
                         }
                     if (list.isEmpty()) {

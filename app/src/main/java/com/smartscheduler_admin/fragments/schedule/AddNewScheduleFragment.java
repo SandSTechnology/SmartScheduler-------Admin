@@ -2,6 +2,7 @@ package com.smartscheduler_admin.fragments.schedule;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.smartscheduler_admin.R;
+import com.smartscheduler_admin.model.RoomsModel;
 import com.smartscheduler_admin.services.ApiServices;
 import com.smartscheduler_admin.services.ClientApi;
 import com.smartscheduler_admin.services.Data;
@@ -74,6 +76,7 @@ public class AddNewScheduleFragment extends Fragment {
     ArrayList<String> CourseList = new ArrayList<>();
     ArrayList<String> TimeSlotList = new ArrayList<>();
     ArrayList<String> RoomList = new ArrayList<>();
+    ArrayList<RoomsModel> RoomModelList = new ArrayList<>();
     ArrayList<String> DepartmentList = new ArrayList<>();
     ArrayList<String> TeacherIDsList = new ArrayList<>();
 
@@ -190,12 +193,36 @@ public class AddNewScheduleFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
-                    String areaName = "";
+                    String RoomNumber = "";
+                    String RoomType = "";
+                    String BlockNumber = "";
+                    String FloorNumber = "" ;
+                    String ID = areaSnapshot.getKey();
                     if (areaSnapshot.child("NUMBER").exists())
-                        areaName = areaSnapshot.child("NUMBER").getValue(String.class);
-                    RoomList.add(areaName);
+                        RoomNumber = areaSnapshot.child("NUMBER").getValue(String.class);
+                    if (areaSnapshot.child("ROOM_TYPE").exists())
+                        RoomType = areaSnapshot.child("ROOM_TYPE").getValue(String.class);
+                    if (areaSnapshot.child("BLOCK_NUM").exists())
+                        BlockNumber = areaSnapshot.child("BLOCK_NUM").getValue(String.class);
+                    if (areaSnapshot.child("FLOOR_NUM").exists())
+                        FloorNumber = areaSnapshot.child("FLOOR_NUM").getValue(String.class);
+                    RoomList.add(RoomNumber);
+
+                    RoomModelList.add(new RoomsModel(ID, RoomNumber, RoomType, BlockNumber, FloorNumber));
                 }
                 RoomSpinner.setAdapter(adapterRoom);
+
+                RoomSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        Log.e("Data" , " Data " + RoomModelList.get(i).getROOM() + RoomModelList.get(i).getBLOCK_NUM());
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
             }
 
             @Override
@@ -772,6 +799,8 @@ public class AddNewScheduleFragment extends Fragment {
         newRef.child("DEPARTMENT").setValue(department);
         newRef.child("TIMESLOT").setValue(timeslot);
         newRef.child("FACULTY_ID").setValue(FacultyID);
+        newRef.child("BLOCK_NUM").setValue(RoomModelList.get(RoomSpinner.getSelectedItemPosition()).getBLOCK_NUM());
+        newRef.child("FLOOR_NUM").setValue(RoomModelList.get(RoomSpinner.getSelectedItemPosition()).getFLOOR_NUM());
 
         getFacultyID(FacultyID, semester, department);
     }

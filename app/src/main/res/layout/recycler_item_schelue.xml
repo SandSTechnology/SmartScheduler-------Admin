@@ -55,6 +55,16 @@
             android:textColor="@color/white" />
 
         <TextView
+            android:id="@+id/block_num"
+            android:layout_marginStart="15dp"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/faculty"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white" />
+
+        <TextView
             android:id="@+id/room"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,10 +100,21 @@
         <TextView
             android:id="@+id/department"
             android:layout_width="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="25dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/credit_hour"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="25dp"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/floorNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/department"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="25dp"
             android:text=""
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/white" />

@@ -368,7 +368,7 @@ public class GenerateTimeTable {
     }
 
     void Save(String ID, String DAY, String timeSLOT, String COURSE, String FACULTY, String ROOM, String SEMESTER, String CREDIT_HOUR, String DEPARTMENT) {
-        SchedulesList.add(new ScheduleModel(ID, DAY, timeSLOT, COURSE, FACULTY, ROOM, SEMESTER, CREDIT_HOUR, DEPARTMENT));
+        SchedulesList.add(new ScheduleModel(ID, DAY, timeSLOT, COURSE, FACULTY, ROOM, SEMESTER, CREDIT_HOUR, DEPARTMENT,"",""));
 
         Log.i("Timetable","ID " + ID + " DAY " + DAY + " Timeslot " + timeSLOT + " COURSE " + COURSE
                 + " FACULTY " + FACULTY + " ROOM " + ROOM + " SEMESTER " +

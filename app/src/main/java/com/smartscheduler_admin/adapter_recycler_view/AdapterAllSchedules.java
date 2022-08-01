@@ -63,6 +63,12 @@ public class AdapterAllSchedules extends RecyclerView.Adapter<AdapterAllSchedule
         if (model.getDEPARTMENT()!=null && !model.getDEPARTMENT().equals(""))
             holder.department.setText(model.getDEPARTMENT());
 
+        if (model.getBLOCK_NUM()!=null && !model.getBLOCK_NUM().equals(""))
+            holder.block_num.setText("Block Num : " + model.getBLOCK_NUM());
+
+        if (model.getFLOOR_NUM()!=null && !model.getFLOOR_NUM().equals(""))
+            holder.floorNumber.setText("Floor Num : " + model.getFLOOR_NUM());
+
         holder.view.setOnClickListener(v -> {
             context.startActivity(new Intent(context, ViewEditableScheduleActivity.class).putExtra("schedule",model));
         });
@@ -82,6 +88,8 @@ public class AdapterAllSchedules extends RecyclerView.Adapter<AdapterAllSchedule
         TextView semester;
         TextView credit_hour;
         TextView department;
+        TextView floorNumber;
+        TextView block_num;
         View view;
 
         public MyHolder(View itemView) {
@@ -95,6 +103,8 @@ public class AdapterAllSchedules extends RecyclerView.Adapter<AdapterAllSchedule
             semester = itemView.findViewById(R.id.semester);
             credit_hour = itemView.findViewById(R.id.credit_hour);
             department = itemView.findViewById(R.id.department);
+            floorNumber = itemView.findViewById(R.id.floorNumber);
+            block_num = itemView.findViewById(R.id.block_num);
         }
     }
 }

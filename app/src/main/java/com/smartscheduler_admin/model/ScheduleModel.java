@@ -12,20 +12,24 @@ public class ScheduleModel implements Serializable {
     String SEMESTER;
     String CREDIT_HOUR;
     String DEPARTMENT;
+    String BLOCK_NUM;
+    String FLOOR_NUM;
 
     public ScheduleModel() {
     }
 
-    public ScheduleModel(String ID, String DAY, String timeSLOT, String COURSE, String FACULTY, String ROOM, String SEMESTER, String CREDIT_HOUR, String DEPARTMENT) {
+    public ScheduleModel(String ID, String DAY, String TIMESLOT, String COURSE, String FACULTY, String ROOM, String SEMESTER, String CREDIT_HOUR, String DEPARTMENT, String BLOCK_NUM, String FLOOR_NUM) {
         this.ID = ID;
         this.DAY = DAY;
-        TIMESLOT = timeSLOT;
+        this.TIMESLOT = TIMESLOT;
         this.COURSE = COURSE;
         this.FACULTY = FACULTY;
         this.ROOM = ROOM;
         this.SEMESTER = SEMESTER;
         this.CREDIT_HOUR = CREDIT_HOUR;
         this.DEPARTMENT = DEPARTMENT;
+        this.BLOCK_NUM = BLOCK_NUM;
+        this.FLOOR_NUM = FLOOR_NUM;
     }
 
     public String getID() {
@@ -98,5 +102,21 @@ public class ScheduleModel implements Serializable {
 
     public void setDEPARTMENT(String DEPARTMENT) {
         this.DEPARTMENT = DEPARTMENT;
+    }
+
+    public String getBLOCK_NUM() {
+        return BLOCK_NUM;
+    }
+
+    public void setBLOCK_NUM(String BLOCK_NUM) {
+        this.BLOCK_NUM = BLOCK_NUM;
+    }
+
+    public String getFLOOR_NUM() {
+        return FLOOR_NUM;
+    }
+
+    public void setFLOOR_NUM(String FLOOR_NUM) {
+        this.FLOOR_NUM = FLOOR_NUM;
     }
 }
